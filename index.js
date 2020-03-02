@@ -2,9 +2,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const axios = require("axios");
 
-function promptUser(){
-    return inquirer
-    .prompt([
+Inquirer.prompt([
         {
         type: "input",
         name: "name",
@@ -42,15 +40,14 @@ function promptUser(){
     }
     ])
 
-    .then(function (response) {
+    .then (function (response) {
         const queryUrl = `https://api.github.com/users/${response.username}`
         axios
             .get(queryUrl).then(function (res) {
 
-
-
-        const readMe = `[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-                        [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
+                const readMe = `[![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://forthebadge.com)
+                        [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com)
+                        [![forthebadge](https://forthebadge.com/images/badges/designed-in-etch-a-sketch.svg)](https://forthebadge.com)
   
 # ${response.name}.
 #### ${response.email}
@@ -79,4 +76,3 @@ email: ${res.data.email}.
             })
 
     });
-}
