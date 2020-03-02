@@ -4,27 +4,27 @@
 
 
 ## Profile
-# ReadMeGenerator.
-### TaniaGM
-### tania99@gmail.com
+#ReadMeGenerator.
+### Github Username: TaniaGM
+### Email: tania99@gmail.com
   
 ## Describe the project
-### creating a good readme generator
+### creating a good readme generator with node.js
 
 ## Role
 ### Developer
 
 ## Usage
-### create a readme for a github repository
+### create a good readme
 
 ## License
 ### Not Applicable
 
 ## Table Of Contents
-### Grab a list of values here
+### Installation, Usage, Licensing, Contributors, Testing
   
 ## Contributing Guidelines
-### null
+### contribute
   
 ## Tests
 ### no testing required
@@ -33,4 +33,6 @@
 ### ![https://github.com/TaniaGM](https://avatars0.githubusercontent.com/u/56511238?v=4&s=50)
   
 ## Email 
-### email: null
+### email: tania99@gmail.com
+
+            
