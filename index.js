@@ -1,78 +1,101 @@
-const fs = require("fs");
+onst fs = require("fs");
 const inquirer = require("inquirer");
 const axios = require("axios");
 
-Inquirer.prompt([
-        {
-        type: "input",
-        name: "name",
-        message: "What is your name?"
-        },
-        {
-        type: "input",
-        name: "email",
-        message: "What is your email?"
-        },
-        {
-        type: "input",
-        name: "github",
-        message: "What is your github username?"
-        },
-        {
-        type: "input",
-        name: "project",
-        message: "What is the name of your project?"
-        },
-        {
-        type: "input",
-        name: "description",
-        message: "Describe your project.",
-        },
-        {
-        type: "input",
-        message: "installation",
-        name: "What coding was used to install your project?"
-        },
-        {
-        type: "input",
-        message: "contribution",
-        message:  "What was your role in this project?  Developer? Contributor?"
-    }
-    ])
+    inquirer.prompt([
+    {
+    type: "input",
+    name: "project",
+    message: "What is your project name?",
+    },
+    {
+    type:"input",
+    name: "userName",
+    message: "What is your Github name?",  
+    },
+    {
+    type: "input",
+    name: "email",
+    message: "Enter your email address",
+    },
+    {
+    type: "input",
+    name: "description",
+    message: "Describe your project",
+    },
+    {
+    type: "list",
+    name: "role",
+    message:"What was your role with this project?",
+    choices: ["Contributor", "Developer", "Observor", "Leech"],
+    },
+    {
+    type: "input",
+    name: "usage",
+    message: "what is the purpose of your project?",
+    },
+    {
+    type: "list",
+    name: "license",
+    message: "What licenses does your project use?",
+    choices: ["MIT", "GPL", "Apache", "Not Applicable"],
+    },
+    {
+    type: "input",
+    name: "guidelines",
+    message: "What were the contribution guidelines?",
+    },
+    {
+    type: "input",
+    name: "test",
+    message:"What are the requirements to test your program?",
+    },
+])
 
-    .then (function (response) {
-        const queryUrl = `https://api.github.com/users/${response.username}`
-        axios
-            .get(queryUrl).then(function (res) {
+.then (function(answers) {
+    const queryUrl = `https://api.github.com/users/${answers.userName}`
+    axios.get(queryUrl).then(function(res){
 
-                const readMe = `[![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://forthebadge.com)
-                        [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com)
-                        [![forthebadge](https://forthebadge.com/images/badges/designed-in-etch-a-sketch.svg)](https://forthebadge.com)
+    const readMe =`[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com)
+                    [![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://forthebadge.com)
+                    [![forthebadge](https://forthebadge.com/images/badges/thats-how-they-get-you.svg)](https://forthebadge.com)
+
+
+## Profile
+# ${answers.project}.
+### ${answers.userName}
+### ${answers.email}
   
-# ${response.name}.
-#### ${response.email}
-#### ${response.github}
-  
-## What's the project?
-${response.project}
-  
+## Describe the project
+### ${answers.description}
+
+## Role
+### ${answers.role}
+
+## Usage
+### ${answers.usage}
+
+## License
+### ${answers.license}
+
 ## Table Of Contents
-Input values
+### Grab a list of values here
   
-# Project Description
-${response.description}
+## Contributing Guidelines
+### ${answers.guidelines}
   
-## Coding used to make the project?
-${response.installation}
+## Tests
+### ${answers.test}
+  
+## Questions
+### ![${res.data.html_url}](${res.data.avatar_url}&s=50)
+  
+## Email 
+### email: ${res.data.email}
 
-# questions
-![${res.data.html_url}](${res.data.avatar_url}&s=50)
-  
-email: ${res.data.email}.
-    
-  `
-  fs.writeFile("READMEgen.md", readMe, function () {
-                });
-            })
-
+            `
+    fs.writeFile("ReadMe.md", readMe, function(){
     });
+    console.log("You successfully generated a README.md file!");
+    })
+});
